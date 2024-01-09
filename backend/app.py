@@ -10,6 +10,7 @@ model = tf.keras.models.load_model('golden_trio.h5')
 @app.route('/predictimage', methods=['POST'])
 def predict_image():
     image_file = request.files['image']
+    
     image = cv2.imdecode(np.fromstring(image_file.read(), np.uint8), cv2.IMREAD_COLOR)
     resized_image = cv2.resize(image, (256, 256))
     resized_image = np.expand_dims(resized_image, axis=0)
